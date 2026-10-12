@@ -1,6 +1,6 @@
 import os
 
-script_path = os.path.dirname(os.path.abspath(__file__))
+script_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 STUDENTS_FILE = os.path.join(script_path, "students.data")
 # create students.data file

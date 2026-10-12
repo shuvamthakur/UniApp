@@ -1,6 +1,6 @@
 import os
 import pickle                                                               # supports read/write data to file
-from constants import STUDENTS_FILE
+from utils.constants import STUDENTS_FILE
 
 class Database:
 
