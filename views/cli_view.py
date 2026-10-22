@@ -11,7 +11,7 @@ class CLIView:
         self.admin_ctrl = AdminController()
 
         # =========================================================================   
-        # 1. UNIVERSITY SYSTEM MENU (The Top Menu)
+        # 1. UNIVERSITY SYSTEM MENU (Top Menu - simplifies Nicole's university code from 2 methods to 1)
         # =========================================================================   
     def run_university_menu(self):
         while True:
