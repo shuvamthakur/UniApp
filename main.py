@@ -8,4 +8,4 @@ if __name__ == "__main__":
         app.mainloop()
     else:    
         app = CLIView()
-        app.run_uni_menu()
+        app.run_university_menu()

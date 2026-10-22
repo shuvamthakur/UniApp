@@ -3,17 +3,18 @@ import random
 from utils.constants import EMAIL_REGEX, PASSWORD_REGEX
 from models.student import Student
 from models.database import Database
-
+from utils.validators import validate_email, validate_password
 
 class AuthController:
     def __init__(self):
         self.db = Database()
 
-    def validate_email(self,email:str) -> bool:
-        return bool(re.fullmatch(EMAIL_REGEX, email))
+    def validate_email(self, email: str) -> bool:
+        return validate_email(email)
 
-    def validate_password(self, password:str) -> bool:
-        return bool(re.fullmatch(PASSWORD_REGEX, password))
+
+    def validate_password(self, password: str) -> bool:
+        return validate_password(password)
 
     def find_by_email(self, email):                                 # validate student doesn't already exist
         students = self.db.read_from_file()
@@ -48,6 +49,7 @@ class AuthController:
         students = self.db.read_from_file()
         for s in students:
             if s.matches_credentials(email, password):
+                print(f"\tLogin Found!")
                 return s
         return None
     
