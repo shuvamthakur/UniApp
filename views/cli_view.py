@@ -1,9 +1,11 @@
 from controllers.auth_controller import AuthController
+from controllers.admin_controller import AdminController
 
 class CLIView:
 
     def __init__(self):
         self.auth = AuthController()
+        self.admin = AdminController()
 
     def read_name(self):                                            # get new student name input
         print("\tName: ", end="")
