@@ -55,15 +55,26 @@ class Subject:
     # Public accessors
     # ------------------------------------------------------------------
     @property
+    def id(self) -> str:
+        return self._id
+
+    @property
+    def mark(self) -> int:
+        return self._mark
+
+    @property
+    def grade(self) -> str:
+        return self._grade
+
     def get_id(self) -> str:
         return self._id
-    @property
+
     def get_mark(self) -> int:
         return self._mark
-    @property
+
     def get_grade(self) -> str:
         return self._grade
-    @property
+
     def is_pass(self) -> bool:
         return is_pass(self._mark)
 

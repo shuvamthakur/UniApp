@@ -119,5 +119,50 @@ class CLIView:
     # 4. ADMIN SYSTEM MENU (Nana's Section: 400 Stories)
     # =========================================================================   
     def run_admin_menu(self):
-        pass
+        while True:
+            choice = input("\tAdmin System (c/g/p/r/s/x): ").strip().lower()
+
+            if choice == "s":
+                print("\tStudent List")
+                students = self.admin_ctrl.get_students()
+                if not students:
+                    print("\t< Nothing to Display >")
+                else:
+                    for s in students:
+                        print(f"\t{s}")
+
+            elif choice == "g":
+                print("\tGrade Grouping")
+                groups = self.admin_ctrl.grade_groups()
+                if not groups:
+                    print("\t< Nothing to Display >")
+                else:
+                    for grade, members in groups.items():
+                        members_str = ", ".join(f"{s.name} :: {s.id} --> GRADE: {s.get_grade() or 'Z':>2} - MARK: {s.get_average_mark() or 0.0:.2f}" for s in members)
+                        print(f"\t{grade:<2} --> [{members_str}]")
+
+            elif choice == "p":
+                    print("\tPASS/FAIL Partition")
+                    partition = self.admin_ctrl.pass_fail_partition()
+                    fail_str = ", ".join(f"{s.name} :: {s.id} --> GRADE: {s.get_grade() or 'Z':>2} - MARK: {(s.get_average_mark() or 0.0):.2f}" for s in partition["FAIL"])
+                    pass_str = ", ".join(f"{s.name} :: {s.id} --> GRADE: {s.get_grade() or 'Z':>2} - MARK: {(s.get_average_mark() or 0.0):.2f}" for s in partition["PASS"])
+                    print(f"\tFAIL --> [{fail_str}]")
+                    print(f"\tPASS --> [{pass_str}]")
+
+            elif choice == "r":
+                student_id = input("\tRemove by ID: ").strip()
+                if self.admin_ctrl.remove_student(student_id):
+                    print(f"\tRemoving Student {student_id} Account")
+                else:
+                    print(f"\tStudent {student_id} does not exist")
+
+            elif choice == "c":
+                print("\tClearing students database")
+                confirm = input("\tAre you sure you want to clear the database (Y)ES/(N)O: ").strip().upper()
+                if confirm in ("Y", "YES"):
+                    self.admin_ctrl.clear_students()
+                    print("\tStudents data cleared")
+
+            elif choice == "x":
+                break
 
